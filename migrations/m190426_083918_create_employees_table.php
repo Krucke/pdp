@@ -16,7 +16,7 @@ class m190426_083918_create_employees_table extends Migration
             'id_emp' => $this->primaryKey(),
             'lastname_emp' => $this->string(50)->notNull(),
             'firstname_emp' => $this->string(30)->notNull(),
-            'otch_emp' => $this->string(30)->notNull(),
+            'otch_emp' => $this->string(30),
             'date_employment' => $this->date()->notNull(),
             'login_emp' => $this->string(40)->notNull()->unique(),
             'pass_emp' => $this->string(16)->notNull(),
