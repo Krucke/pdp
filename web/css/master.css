@@ -45,9 +45,6 @@ ul {
   width: 10px;
   background: #282a36; }
 
-.control_panel::-webkit-scrollbar-button {
-  background: grey; }
-
 .control_panel {
   width: 350px;
   position: fixed;
