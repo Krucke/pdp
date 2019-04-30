@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -20,19 +21,24 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['suppliers','logout','login'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['suppliers','logout'],
                         'roles' => ['@'],
+                    ],
+                    [
+                      'allow' => true,
+                      'actions' => ['login'],
+                      'roles' => ['?'],
                     ],
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    // 'logout' => ['post'],
                 ],
             ],
         ];
@@ -64,6 +70,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionSuppliers(){
+
+      return $this->render('suppliers');
+    }
+
     /**
      * Login action.
      *
@@ -71,19 +82,25 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
+      return $this->render('login');
+    }
 
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+    public function actionSignin(){
+
+      if(isset($_POST['signin'])){
+
+        $loginuser = $_POST['login'];
+        $passworduser = $_POST['password'];
+        $user = User::findOne(['login_emp' => $loginuser]);
+        if($user!=null){
+          Yii::$app->user->login($user);
+          return $this->redirect(['/site/index']);
+        }
+        else {
+          return "asd";
+        }
+      }
     }
 
     /**
