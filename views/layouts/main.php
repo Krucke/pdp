@@ -22,6 +22,7 @@ AppAsset::register($this);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => '/logo/logo.png']) ?>
     <?php $this->registerCsrfMetaTags() ?>
      <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -48,7 +49,7 @@ AppAsset::register($this);
     </div>
     <div class="control_panel__bottom">
       <div class="profile_user">
-        <img src="../logo/logo.png" alt="" class="profile_user__img">
+        <img src="<?=Yii::$app->user->identity->img_emp?>" alt="" class="profile_user__img">
         <div class="profile_user__info">
           <h4 class="profile_user__name"><?=Yii::$app->user->identity->lastname_emp?> <?=Yii::$app->user->identity->firstname_emp?></h4>
           <h5 class="profile_user__post"><?=Yii::$app->user->identity->post_id?></h5>

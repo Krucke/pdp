@@ -98,10 +98,9 @@ ul{
       justify-content: space-around;
       align-items: center;
       &__img{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border-radius: 100px;
-        border: 1px solid red;
       }
       &__info{
         display: flex;
@@ -110,7 +109,7 @@ ul{
         width: 75%;
         text-align: center;
         h4{
-          font-size: 25px;
+          font-size: 24px;
           color: white;
         }
         h5{
