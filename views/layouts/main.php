@@ -5,9 +5,6 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -120,7 +117,7 @@ AppAsset::register($this);
 <script type="text/javascript">
   $(document).ready(function(){
     $('.down').click(function(){
-      $(this).find('.submenu').slideToggle("slow");
+      $(this).find('.submenu').slideToggle("250");
       $(this).toggleClass('active_li');
       $(this).find('.arrow__right').toggleClass('active');
     });

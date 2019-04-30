@@ -54,9 +54,6 @@ ul{
   width: 10px;
   background: $control_panel_hover_li;
 }
-.control_panel::-webkit-scrollbar-button{
-  background: grey;
-}
 .control_panel{
   width: 350px;
   position: fixed;
@@ -216,3 +213,6 @@ ul{
   max-width: 1000px;
   margin: 0 auto;
 }
+/*разработка дизайна для
+разрешения экрана ноутбуков
+т.н
