@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -95,7 +96,7 @@ ul {
         width: 75%;
         text-align: center; }
         .control_panel__bottom .profile_user__info h4 {
-          font-size: 27px;
+          font-size: 25px;
           color: white; }
         .control_panel__bottom .profile_user__info h5 {
           font-size: 20px;
@@ -167,13 +168,28 @@ ul {
 [id='nav-toggle']:checked ~ .control_panel > .nav-toggle:after {
   content: '\2715'; }
 
-[id='nav-toggle']:checked ~ .main__content {
+[id='nav-toggle']:checked ~ .container {
   transition: 0.4s;
-  -webkit-transform: translateX(320px);
-  -moz-transform: translateX(320px);
-  transform: translateX(320px); }
+  -webkit-transform: translateX(50px);
+  -moz-transform: translateX(50px);
+  transform: translateX(50px); }
 
-.main__content {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto; }
+.container {
+  font-size: 20px; }
+
+/*стили кнопок и тд*/
+.button__dark {
+  background: #363845;
+  border: 0;
+  padding: 10px;
+  color: white; }
+
+.button__dark:hover {
+  background: #4c4f62; }
+
+.color__black {
+  color: black; }
+
+/*разработка дизайна для
+разрешения экрана ноутбуков
+т.н*/

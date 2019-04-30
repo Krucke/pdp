@@ -7,41 +7,29 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Вход в учетную запись';
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
-
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
+<style media="screen">
+  .row{
+    height: 99vh;
+    margin-top: -50px;
+ }
+</style>
+<div class="row justify-content-center align-items-center">
+  <div class="col-8">
+    <form class="" action="/site/signin" method="post">
+      <h3 class="text-center text-uppercase m-4 color__black">Вход в систему</h3>
+      <div class="form-group">
+        <label for="login" class="color__black">Логин пользователя</label>
+        <input type="text" name="login" class="form-control" id="login" placeholder="Введите логин">
+      </div>
+      <div class="form-group">
+        <label for="password" class="color__black">Пароль пользователя</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Введите пароль">
+      </div>
+      <small id="emailHelp" class="form-text text-muted float-left mt-2">При возникновении вопросов обращайтесь в тех. поддержку</small>
+      <button type="submit" name="signin" class="btn btn-primary float-right button__dark" id="emailHelp" aria-describedby="emailHelp">Войти в систему</button>
+      <div class="clearfix"></div>
+    </form>
+  </div>
 </div>
