@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\models\Supplier;
 
 class SiteController extends Controller
 {
@@ -71,8 +72,15 @@ class SiteController extends Controller
     }
 
     public function actionSuppliers(){
-
-      return $this->render('suppliers');
+      $model = new Supplier;
+      $suppliers = $model->getSuppliers();
+      return $this->render('suppliers',['suppliers' => $suppliers]);
+      // if(isset($_POST['title']) and $_POST['title'] != ""){
+      //   $text = $_POST['title'];
+      //   $command = Yii::$app->db->createCommand("SELECT * FROM SUPPLIER WHERE NAME_SUP LIKE '$text%'")->queryAll();
+      //   print_r($command);
+      //   // return $suppliers = $command;
+      // }
     }
 
     /**
@@ -84,6 +92,20 @@ class SiteController extends Controller
     {
 
       return $this->render('login');
+    }
+
+    public function actionExample(){
+      $name_sup = $_POST['referal'];
+      $data = Yii::$app->db->createCommand("SELECT * FROM SUPPLIER WHERE NAME_SUP LIKE '$name_sup%'")->queryAll();
+      foreach ($data as $key) {
+      echo "\n<li>".$key['name_sup']."</li>"; //$row["name"] - имя поля таблицы
+      };
+      // foreach ($data as $dat) {
+      //   echo "<h1>dfgdfg</h1>";
+      // }
+      // return $this->render('suppliers',['suppliers' => $data]);
+      // $name_sup = $_POST['title'];
+      // echo $name_sup;
     }
 
     public function actionSignin(){
@@ -120,26 +142,27 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
+    // public function actionContact()
+    // {
+    //     $model = new ContactForm();
+    //     if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+    //         Yii::$app->session->setFlash('contactFormSubmitted');
+    //
+    //         return $this->refresh();
+    //     }
+    //     return $this->render('contact', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
     /**
      * Displays about page.
      *
      * @return string
      */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+    // public function actionAbout()
+    // {
+    //     return $this->render('about');
+    // }
+
 }

@@ -7,7 +7,8 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use app\assets\AppAsset;
 use app\models\User;
-
+use app\models\Employees;
+use app\models\Post;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -51,8 +52,8 @@ AppAsset::register($this);
       <div class="profile_user">
         <img src="<?=Yii::$app->user->identity->img_emp?>" alt="" class="profile_user__img">
         <div class="profile_user__info">
-          <h4 class="profile_user__name"><?=Yii::$app->user->identity->lastname_emp?> <?=Yii::$app->user->identity->firstname_emp?></h4>
-          <h5 class="profile_user__post"><?=Yii::$app->user->identity->post_id?></h5>
+          <h4 class="profile_user__name mb-2"><?=Yii::$app->user->identity->lastname_emp?> <?=Yii::$app->user->identity->firstname_emp?></h4>
+          <h5 class="profile_user__post"><?php echo Yii::$app->user->identity->post->name_post?></h5>
         </div>
       </div>
       <nav class="navigation">
@@ -60,7 +61,8 @@ AppAsset::register($this);
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-shopping-cart"></i>Закупка товара <i class="arrow__right"></i></a>
             <ul class="submenu">
               <li class="submenu__item"><a href="/site/suppliers" class="submenu__link">Поставщики</a></li>
-              <li class="submenu__item"><a href="/site/login" class="submenu__link">Underpoint 2</a></li>
+              <li class="submenu__item"><a href="/site/addorderforcompany" class="submenu__link">Создание заказа</a></li>
+              <li class="submenu__item"><a href="/site/documentationorderscompany" class="submenu__link">Документация</a></li>
             </ul>
           </li>
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-truck-loading"></i>Принятие поставки <i class="arrow__right"></i></a>
