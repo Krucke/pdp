@@ -64,4 +64,9 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasOne(LevelAccess::className(), ['id_level' => 'level_id']);
     }
+
+    public function getPost(){
+
+      return static::find()->all();
+    }
 }

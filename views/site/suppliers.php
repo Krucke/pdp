@@ -6,6 +6,9 @@ use yii\helpers\Html;
 $this->title = 'Поставщики';
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<form class="form" action="/site/suppliers" method="post">
+  <button type="submit" name="save" class="btn btn-success">Save</button>
+</form>
 <div class="row justify-content-center">
   <h2 class="w-100 text-center mt-3">Поставщики</h2>
   <form action="" class="col-12" id="form">
@@ -48,20 +51,22 @@ $this->title = 'Поставщики';
 </script>
 <?php
 
+if(isset($_POST['save'])){
+  \PhpOffice\PhpWord \ Settings :: setCompatibility (false);
+  \PhpOffice\PhpWord\Settings::setOutputEscapingEnabled(true);
+  \PhpOffice\PhpWord\Settings :: setZipClass (\PhpOffice\PhpWord\Settings :: PCLZIP);
   $worddoc = new \PhpOffice\PhpWord\PhpWord();
   $worddoc->setDefaultFontName('Times New Roman');
   $worddoc->setDefaultFontSize(12);
 
   $properties = $worddoc->getDocInfo();
 
-  $properties->setCreator("da");
-  $properties->setCompany("ООО \"Издательство Эксмо\"");
+  $properties->setCreator('da');
+  $properties->setCompany('ООО');
   $properties->setTitle('Заголовок');
   $properties->setDescription('My description');
   $properties->setCategory('My category');
-  $properties->setLastModifiedBy("das");
-  $properties->setCreated(date('d.m.Y H:i'));
-  $properties->setModified(date('d.m.Y H:i'));
+  $properties->setLastModifiedBy('das');
   $properties->setSubject('My subject');
   $properties->setKeywords('my, key, word');
 
@@ -89,15 +94,19 @@ $this->title = 'Поставщики';
     $table->addCell()->addText($suppliers[$j]['name_sup']);
     $table->addCell()->addText($suppliers[$j]['description_sup']);
   }
-  $filename = "sdf.docx";
+  $filename = "Информация о поставщиках на ".date('Y.m.d').".docx";
   header("Content-Description: File Transfer");
   header('Content-Disposition: attachment; filename="'.$filename.'"');
   header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
   header('Content-Transfer-Encoding: binary');
   header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
   header('Expires: 0');
+  \PhpOffice\PhpWord\Settings::setCompatibility(false);
   $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($worddoc, 'Word2007');
+  ob_clean();
   $xmlWriter->save("php://output");
+  exit;
   // $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($worddoc, 'Word2007');
   // $objWriter->save('doc'.date('Y-m-d').'.docx');
+}
 ?>

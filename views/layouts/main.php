@@ -53,7 +53,7 @@ AppAsset::register($this);
         <img src="<?=Yii::$app->user->identity->img_emp?>" alt="" class="profile_user__img">
         <div class="profile_user__info">
           <h4 class="profile_user__name mb-2"><?=Yii::$app->user->identity->lastname_emp?> <?=Yii::$app->user->identity->firstname_emp?></h4>
-          <h5 class="profile_user__post"><?php echo Yii::$app->user->identity->post->name_post?></h5>
+          <h5 class="profile_user__post"><?=Yii::$app->user->identity->post->name_post?></h5>
         </div>
       </div>
       <nav class="navigation">
@@ -79,8 +79,8 @@ AppAsset::register($this);
           </li>
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-users"></i>Сотрудники <i class="arrow__right"></i></a>
             <ul class="submenu">
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 1</a></li>
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 2</a></li>
+              <li class="submenu__item"><a href="/site/employees" class="submenu__link">Таблица сотрудников</a></li>
+              <li class="submenu__item"><a href="/site/addemp" class="submenu__link">Добавление сотрудника</a></li>
             </ul>
           </li>
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-paste"></i>Документы <i class="arrow__right"></i></a>
@@ -123,7 +123,7 @@ AppAsset::register($this);
      $this->render('/site/login');
   }
   ?>
-  <main class="container align-items-center">
+  <main class="container">
     <?= $content ?>
   </main>
 </div>

@@ -84,4 +84,9 @@ class Employees extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Order::className(), ['emp_id' => 'id_emp']);
     }
+
+    public function getEmp(){
+
+      return static::find()->all();
+    }
 }

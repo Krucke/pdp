@@ -11,6 +11,9 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
 use app\models\Supplier;
+use app\models\Employees;
+use app\models\StatusOrder;
+use app\models\Post;
 
 class SiteController extends Controller
 {
@@ -75,12 +78,6 @@ class SiteController extends Controller
       $model = new Supplier;
       $suppliers = $model->getSuppliers();
       return $this->render('suppliers',['suppliers' => $suppliers]);
-      // if(isset($_POST['title']) and $_POST['title'] != ""){
-      //   $text = $_POST['title'];
-      //   $command = Yii::$app->db->createCommand("SELECT * FROM SUPPLIER WHERE NAME_SUP LIKE '$text%'")->queryAll();
-      //   print_r($command);
-      //   // return $suppliers = $command;
-      // }
     }
 
     /**
@@ -92,6 +89,36 @@ class SiteController extends Controller
     {
 
       return $this->render('login');
+    }
+
+    public function actionAddemp(){
+
+      if(isset($_POST['addemp'])){
+
+        $model = new Employees;
+        $model->lastname_emp = $_POST['lastname'];
+        $model->firstname_emp = $_POST['firstname'];
+        $model->otch_emp = $_POST['otch'];
+        $model->login_emp = $_POST['login'];
+        $password = $_POST['password'];
+        $model->pass_emp = $password;
+        $model->date_employment = "2019-03-03";
+        $model->auth_key = 1;
+        $model->post_id = $_POST['post'];
+        $model->img_emp = "fddsf";
+        $model->save();
+        return $this->redirect(['/site/employees']);
+      }
+      $model = new Post;
+      $posts = $model->getPost();
+      return $this->render('/site/addemp',['posts' => $posts]);
+    }
+
+    public function actionEmployees(){
+
+      $model = new Employees;
+      $employees = $model->getEmp();
+      return $this->render('/site/employees',['employees' => $employees]);
     }
 
     public function actionExample(){
