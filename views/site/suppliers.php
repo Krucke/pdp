@@ -46,3 +46,58 @@ $this->title = 'Поставщики';
     })
   })
 </script>
+<?php
+
+  $worddoc = new \PhpOffice\PhpWord\PhpWord();
+  $worddoc->setDefaultFontName('Times New Roman');
+  $worddoc->setDefaultFontSize(12);
+
+  $properties = $worddoc->getDocInfo();
+
+  $properties->setCreator("da");
+  $properties->setCompany("ООО \"Издательство Эксмо\"");
+  $properties->setTitle('Заголовок');
+  $properties->setDescription('My description');
+  $properties->setCategory('My category');
+  $properties->setLastModifiedBy("das");
+  $properties->setCreated(date('d.m.Y H:i'));
+  $properties->setModified(date('d.m.Y H:i'));
+  $properties->setSubject('My subject');
+  $properties->setKeywords('my, key, word');
+
+  $section = $worddoc->addSection();
+
+  $tableStyle = [
+    "borderColor" => '000000',
+    "borderSize" => 3,
+    "align" => 'center',
+    "textAlignment" => 'center'
+  ];
+  $table = $section->addTable($tableStyle);
+
+  $table->addRow();
+  $cellId = $table->addCell();
+  $cellId->addText('Id');
+  $cellName = $table->addCell();
+  $cellName->addText('Name_sup');
+  $cellDesc = $table->addCell();
+  $cellDesc->addText('Description');
+
+  for ($j=0; $j < count($suppliers); $j++) {
+    $table->addRow();
+    $table->addCell()->addText($suppliers[$j]['id_sup']);
+    $table->addCell()->addText($suppliers[$j]['name_sup']);
+    $table->addCell()->addText($suppliers[$j]['description_sup']);
+  }
+  $filename = "sdf.docx";
+  header("Content-Description: File Transfer");
+  header('Content-Disposition: attachment; filename="'.$filename.'"');
+  header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+  header('Content-Transfer-Encoding: binary');
+  header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+  header('Expires: 0');
+  $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($worddoc, 'Word2007');
+  $xmlWriter->save("php://output");
+  // $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($worddoc, 'Word2007');
+  // $objWriter->save('doc'.date('Y-m-d').'.docx');
+?>
