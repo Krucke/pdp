@@ -16,7 +16,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: red; }
+  color:white; }
 
 .submenu {
   display: none; }
@@ -25,7 +25,7 @@ a:hover {
     padding: 15px 0 5px 40px; }
   .submenu__item:hover a {
     transition: 0.6s;
-    color: red;
+    color: white;
     padding-left: +10px; }
 
 .active_li {
@@ -49,12 +49,13 @@ ul {
 .control_panel {
   width: 350px;
   position: fixed;
-  left: -320px;
+  left: -350px;
   top: 0;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   transition: left 0.3s;
   z-index: 1000;
+  background: #282a36;
   scroll-behavior: smooth; }
   .control_panel__top {
     background: #f3f3f3;
@@ -140,13 +141,14 @@ ul {
 
 .nav-toggle {
   position: absolute;
-  left: 305px;
-  top: 0;
-  padding: 0.1em;
-  color: black;
+  left: 0px;
+  top: 10px;
+  padding: 0.25em;
+  background: #363845;
+  color: white;
   cursor: pointer;
-  font-size: 1.2em;
-  line-height: 1;
+  font-size: 1.5em;
+  line-height: 1.3;
   font-weight: bold;
   z-index: 1001; }
 
@@ -156,6 +158,7 @@ ul {
 
 [id='nav-toggle'] {
   position: absolute;
+  background: inherit;
   display: none; }
 
 [id='nav-toggle']:checked ~ .control_panel {
@@ -164,8 +167,15 @@ ul {
   -moz-box-shadow: 4px 0px 20px 0px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 4px 0px 20px 0px rgba(0, 0, 0, 0.5); }
 
-[id='nav-toggle']:checked ~ .control_panel > .nav-toggle:after {
+[id='nav-toggle']:checked ~ .nav-toggle:after {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  color: black;
   content: '\2715'; }
+
+  [id='nav-toggle']:checked ~ label {
+    background: inherit}
 
 [id='nav-toggle']:checked ~ .container {
   transition: 0.4s;

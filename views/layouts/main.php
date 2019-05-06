@@ -37,8 +37,8 @@ AppAsset::register($this);
     if (!Yii::$app->user->isGuest) {
   ?>
   <input type="checkbox" id="nav-toggle" hidden>
+  <label for="nav-toggle" class="nav-toggle" onclick></label>
   <aside class="control_panel" id="control_panel">
-    <label for="nav-toggle" class="nav-toggle" onclick></label>
     <div class="control_panel__top">
       <div class="logo">
         <img src="../logo/logo.png" alt="logo" class="logo__img">
@@ -61,8 +61,8 @@ AppAsset::register($this);
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-shopping-cart"></i>Закупка товара <i class="arrow__right"></i></a>
             <ul class="submenu">
               <li class="submenu__item"><a href="/site/suppliers" class="submenu__link">Поставщики</a></li>
-              <li class="submenu__item"><a href="/site/addorderforcompany" class="submenu__link">Создание заказа</a></li>
-              <li class="submenu__item"><a href="/site/documentationorderscompany" class="submenu__link">Документация</a></li>
+              <li class="submenu__item"><a href="" class="submenu__link">Создание заказа</a></li>
+              <li class="submenu__item"><a href="" class="submenu__link">Документация</a></li>
             </ul>
           </li>
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-truck-loading"></i>Принятие поставки <i class="arrow__right"></i></a>
@@ -83,33 +83,9 @@ AppAsset::register($this);
               <li class="submenu__item"><a href="/site/addemp" class="submenu__link">Добавление сотрудника</a></li>
             </ul>
           </li>
-          <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-paste"></i>Документы <i class="arrow__right"></i></a>
+          <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-paste"></i>Обратная связь <i class="arrow__right"></i></a>
             <ul class="submenu">
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 1</a></li>
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 2</a></li>
-            </ul>
-          </li>
-          <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-paste"></i>Документы <i class="arrow__right"></i></a>
-            <ul class="submenu">
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 1</a></li>
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 2</a></li>
-            </ul>
-          </li>
-          <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-paste"></i>Документы <i class="arrow__right"></i></a>
-            <ul class="submenu">
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 1</a></li>
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 2</a></li>
-            </ul>
-          </li>
-          <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-paste"></i>Документы <i class="arrow__right"></i></a>
-            <ul class="submenu">
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 1</a></li>
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 2</a></li>
-            </ul>
-          </li>
-          <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-paste"></i>Документы <i class="arrow__right"></i></a>
-            <ul class="submenu">
-              <li class="submenu__item"><a href="" class="submenu__link">Underpoint 1</a></li>
+              <li class="submenu__item"><a href="/site/contact" class="submenu__link">Создание письма</a></li>
               <li class="submenu__item"><a href="" class="submenu__link">Underpoint 2</a></li>
             </ul>
           </li>
@@ -127,6 +103,11 @@ AppAsset::register($this);
     <?= $content ?>
   </main>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
+Swal(
+"fdsf"
+);
+</script>
 <script type="text/javascript">
   $(document).ready(function(){
     $('.down').click(function(){

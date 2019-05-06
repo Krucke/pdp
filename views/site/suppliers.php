@@ -6,9 +6,9 @@ use yii\helpers\Html;
 $this->title = 'Поставщики';
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<form class="form" action="/site/suppliers" method="post">
+<!-- <form class="form" action="/site/suppliers" method="post">
   <button type="submit" name="save" class="btn btn-success">Save</button>
-</form>
+</form> -->
 <div class="row justify-content-center">
   <h2 class="w-100 text-center mt-3">Поставщики</h2>
   <form action="" class="col-12" id="form">

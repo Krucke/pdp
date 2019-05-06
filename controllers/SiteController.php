@@ -91,6 +91,13 @@ class SiteController extends Controller
       return $this->render('login');
     }
 
+    public function actionDeleteemp($id){
+
+      $model = new Employees;
+      $emp = $model->DeleteEmp($id);
+      return $this->redirect(['/site/employees']);
+    }
+
     public function actionAddemp(){
 
       if(isset($_POST['addemp'])){
@@ -101,11 +108,11 @@ class SiteController extends Controller
         $model->otch_emp = $_POST['otch'];
         $model->login_emp = $_POST['login'];
         $password = $_POST['password'];
-        $model->pass_emp = $password;
-        $model->date_employment = "2019-03-03";
+        $model->pass_emp = Yii::$app->getSecurity()->generatePasswordHash($password);
+        $model->date_employment = date('Y-m-d');
         $model->auth_key = 1;
         $model->post_id = $_POST['post'];
-        $model->img_emp = "fddsf";
+        $model->img_emp = "https://im0-tub-ru.yandex.net/i?id=a1fed43bdb3aad26e65eb28aac1ce05a&n=13";
         $model->save();
         return $this->redirect(['/site/employees']);
       }
@@ -119,6 +126,31 @@ class SiteController extends Controller
       $model = new Employees;
       $employees = $model->getEmp();
       return $this->render('/site/employees',['employees' => $employees]);
+    }
+
+    public function actionEditemp($id){
+
+      if (isset($_POST['editemp'])) {
+        $model = Employees::findOne($id);
+        $model->lastname_emp = $_POST['lastname'];
+        $model->firstname_emp = $_POST['firstname'];
+        $model->otch_emp = $_POST['otch'];
+        $model->auth_key = 1;
+        $model->post_id = $_POST['post'];
+        $model->img_emp = "https://im0-tub-ru.yandex.net/i?id=a1fed43bdb3aad26e65eb28aac1ce05a&n=13";
+        $model->save();
+        return $this->redirect(['/site/employees']);
+      }
+      $model = new Employees;
+      $emp = $model->findOne($id);
+      $model2 = new Post;
+      $posts = $model2->getPost();
+      return $this->render('editemp',['emp' => $emp,'posts' => $posts]);
+    }
+
+    public function actionContact(){
+
+      return $this->render('contact');
     }
 
     public function actionExample(){
@@ -137,19 +169,41 @@ class SiteController extends Controller
 
     public function actionSignin(){
 
-      if(isset($_POST['signin'])){
-
-        $loginuser = $_POST['login'];
-        $passworduser = $_POST['password'];
-        $user = User::findOne(['login_emp' => $loginuser]);
-        if($user!=null){
-          Yii::$app->user->login($user);
-          return $this->redirect(['/site/index']);
-        }
-        else {
-          echo "string";
-        }
+      if(isset($_POST['login']) and isset($_POST['pass'])){
+          $loginuser = $_POST['login'];
+          $passworduser = $_POST['pass'];
+          $user = User::findOne(['login_emp' => $loginuser]);
+          if($user!=null){
+            if($user->pass_emp == Yii::$app->getSecurity()->validatePassword($passworduser, $user->pass_emp)){
+              Yii::$app->user->login($user);
+              echo "has";
+            }
+            else {
+              echo "bad pas";
+            }
+          }
+          else {
+            echo "not find";
+          }
       }
+      // if(isset($_POST['signin'])){
+      //
+      //   $loginuser = $_POST['login'];
+      //   $passworduser = $_POST['password'];
+      //   $user = User::findOne(['login_emp' => $loginuser]);
+      //   if($user!=null){
+      //     if($user->pass_emp == $passworduser){
+      //       Yii::$app->user->login($user);
+      //       return $this->redirect(['/site/index']);
+      //     }
+      //     else {
+      //       echo "bad pas";
+      //     }
+      //   }
+      //   else {
+      //     echo "not find";
+      //   }
+      // }
     }
 
     /**
@@ -164,23 +218,7 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    // public function actionContact()
-    // {
-    //     $model = new ContactForm();
-    //     if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-    //         Yii::$app->session->setFlash('contactFormSubmitted');
-    //
-    //         return $this->refresh();
-    //     }
-    //     return $this->render('contact', [
-    //         'model' => $model,
-    //     ]);
-    // }
+
 
     /**
      * Displays about page.

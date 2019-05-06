@@ -37,14 +37,14 @@ class Employees extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lastname_emp', 'firstname_emp', 'otch_emp', 'date_employment', 'login_emp', 'pass_emp', 'img_emp', 'post_id'], 'required'],
+            [['lastname_emp', 'firstname_emp', 'otch_emp', 'date_employment', 'login_emp', 'pass_emp', 'img_emp', 'email_emp',' post_id'], 'required'],
             [['date_employment'], 'safe'],
             [['img_emp'], 'string'],
             [['auth_key', 'post_id'], 'integer'],
             [['lastname_emp'], 'string', 'max' => 50],
             [['firstname_emp', 'otch_emp'], 'string', 'max' => 30],
-            [['login_emp'], 'string', 'max' => 40],
-            [['pass_emp'], 'string', 'max' => 16],
+            [['login_emp'], 'string', 'max' => 60],
+            [['pass_emp'], 'string', 'max' => 60],
             [['login_emp'], 'unique'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id_post']],
         ];
@@ -89,4 +89,10 @@ class Employees extends \yii\db\ActiveRecord
 
       return static::find()->all();
     }
+
+    public function DeleteEmp($id){
+
+      return $query = Yii::$app->db->createCommand("delete from employees where id_emp = {$id}")->query();
+    }
+
 }

@@ -4,6 +4,18 @@
   use app\models\Employees;
   $this->title = 'Сотрудники';
 ?>
+<style media="screen">
+  .forfa{
+    color: black;
+  }
+  .forfa:first-child{
+    margin-right: 10px;
+  }
+  .forfa:hover{
+    transition: 0.3s;
+    color:grey
+  }
+</style>
 <h2 class="text-center mt-3 mb-4">Сотрудники</h2>
 <input type="text" name="" value="" class="form-control mb-3 who" placeholder="Ввведите фамилию, имя, отчество или должность для поиска сотрудника..." autocomplete="off">
 <table class="table table-hover text-center">
@@ -28,12 +40,12 @@
       <td>
         <?php
 
-          $sotr = Employees::findOne($emp['post_id']);
+          $sotr = Employees::findOne($emp['id_emp']);
           $post = $sotr->post;
           echo $post->name_post;
         ?>
       </td>
-      <td><i class="fas fa-eye"></i> <i class="fas fa-edit"></i> <i class="fas fa-user-times"></i></td>
+      <td><a href="/site/editemp?id=<?=$emp['id_emp']?>" class="forfa"><i class="fas fa-edit"></i></a> <a href="/site/deleteemp?id=<?=$emp['id_emp']?>" class="forfa"><i class="fas fa-user-times"></i></a></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
