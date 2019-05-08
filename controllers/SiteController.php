@@ -10,11 +10,14 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+<<<<<<< HEAD
 use app\models\Supplier;
 use app\models\Employees;
 use app\models\StatusOrder;
 use app\models\Post;
 use app\models\Product;
+=======
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
 
 class SiteController extends Controller
 {
@@ -26,7 +29,11 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+<<<<<<< HEAD
                 'only' => ['login','logout','suppliers','','site','/','/site','addemp','editemp','products','employees','contact'],
+=======
+                'only' => ['login','logout','suppliers','','site','/','/site'],
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
                 'rules' => [
                     [
                         'allow' => true,
@@ -76,9 +83,14 @@ class SiteController extends Controller
     }
 
     public function actionSuppliers(){
+<<<<<<< HEAD
       $model = new Supplier;
       $suppliers = $model->getSuppliers();
       return $this->render('suppliers',['suppliers' => $suppliers]);
+=======
+
+      return $this->render('suppliers');
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
     }
 
     /**
@@ -92,6 +104,7 @@ class SiteController extends Controller
       return $this->render('login');
     }
 
+<<<<<<< HEAD
     public function actionDeleteemp($id){
 
       $model = new Employees;
@@ -221,6 +234,23 @@ class SiteController extends Controller
       //     echo "not find";
       //   }
       // }
+=======
+    public function actionSignin(){
+
+      if(isset($_POST['signin'])){
+
+        $loginuser = $_POST['login'];
+        $passworduser = $_POST['password'];
+        $user = User::findOne(['login_emp' => $loginuser]);
+        if($user!=null){
+          Yii::$app->user->login($user);
+          return $this->redirect(['/site/index']);
+        }
+        else {
+          echo "string";
+        }
+      }
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
     }
 
     /**

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
@@ -110,3 +111,6 @@ if(isset($_POST['save'])){
   // $objWriter->save('doc'.date('Y-m-d').'.docx');
 }
 ?>
+=======
+<h2 style="text-align:center;">Suppliers</h2>
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2

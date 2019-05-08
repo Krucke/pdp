@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+<<<<<<< HEAD
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -47,9 +48,27 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @param string $token the token to be looked for
      * @return IdentityInterface|null the identity object that matches the given token.
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
+=======
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+
+class User extends ActiveRecord implements IdentityInterface
+{
+    public static function tableName()
     {
+        return 'employees';
+    }
+
+    /**
+     * Finds an identity by the given ID.
+     *
+     * @param string|int $id the ID to be looked for
+     * @return IdentityInterface|null the identity object that matches the given ID.
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
+     */
+    public static function findIdentity($id)
+    {
+<<<<<<< HEAD
         return static::findOne(['access_token' => $token]);
     }
 
@@ -72,6 +91,24 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @param string $authKey
      * @return bool if auth key is valid for current user
+=======
+        return static::findOne($id);
+    }
+
+    /**
+     * Finds an identity by the given token.
+     *
+     * @param string $token the token to be looked for
+     * @return IdentityInterface|null the identity object that matches the given token.
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+    /**
+     * @return int|string current user ID
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
      */
     public function validateAuthKey($authKey)
     {
@@ -102,6 +139,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function rules()
     {
+<<<<<<< HEAD
         return [
             [['lastname_emp', 'firstname_emp', 'otch_emp', 'date_employment', 'login_emp', 'pass_emp', 'img_emp', 'post_id'], 'required'],
             [['date_employment'], 'safe'],
@@ -114,13 +152,17 @@ class User extends ActiveRecord implements IdentityInterface
             [['login_emp'], 'unique'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id_post']],
         ];
+=======
+        return $this->id_emp;
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
     }
 
     /**
-     * {@inheritdoc}
+     * @return string current user auth key
      */
     public function attributeLabels()
     {
+<<<<<<< HEAD
         return [
             'id_emp' => 'Id Emp',
             'lastname_emp' => 'Lastname Emp',
@@ -137,9 +179,18 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @return \yii\db\ActiveQuery
+=======
+        return $this->auth_key;
+    }
+
+    /**
+     * @param string $authKey
+     * @return bool if auth key is valid for current user
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
      */
     public function getPost()
     {
+<<<<<<< HEAD
         return $this->hasOne(Post::className(), ['id_post' => 'post_id']);
     }
 
@@ -149,5 +200,18 @@ class User extends ActiveRecord implements IdentityInterface
     public function getOrders()
     {
         return $this->hasMany(Order::className(), ['emp_id' => 'id_emp']);
+=======
+        return $this->getAuthKey() === $authKey;
+    }
+
+    public function findByUsername($login_emp){
+
+      return static::findOne(['login_emp' => $login_emp]);
+    }
+
+    public function validatePassword($password){
+
+      return $this->password === $password;
+>>>>>>> 2ad26e0444a1a9e2f2d7eae5ff2723aa2e6613e2
     }
 }
