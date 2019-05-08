@@ -21,11 +21,11 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['suppliers','logout','login'],
+                'only' => ['login','logout','suppliers','','site','/','/site'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['suppliers','logout'],
+                        'actions' => ['logout','suppliers','','site','/'],
                         'roles' => ['@'],
                     ],
                     [
@@ -98,7 +98,7 @@ class SiteController extends Controller
           return $this->redirect(['/site/index']);
         }
         else {
-          return "asd";
+          echo "string";
         }
       }
     }

@@ -85,10 +85,9 @@ ul {
       justify-content: space-around;
       align-items: center; }
       .control_panel__bottom .profile_user__img {
-        width: 60px;
-        height: 60px;
-        border-radius: 100px;
-        border: 1px solid red; }
+        width: 80px;
+        height: 80px;
+        border-radius: 100px; }
       .control_panel__bottom .profile_user__info {
         display: flex;
         flex-direction: column;
@@ -96,7 +95,7 @@ ul {
         width: 75%;
         text-align: center; }
         .control_panel__bottom .profile_user__info h4 {
-          font-size: 25px;
+          font-size: 24px;
           color: white; }
         .control_panel__bottom .profile_user__info h5 {
           font-size: 20px;

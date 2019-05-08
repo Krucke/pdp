@@ -1,10 +1,19 @@
 <?php
-
+use yii\filters\AccessControl;
+use yii\web\Controller;
+use yii\web\Response;
+use yii\filters\VerbFilter;
+use app\models\LoginForm;
+use app\models\ContactForm;
+use app\models\User;
 /* @var $this yii\web\View */
 
 $this->title = 'Главная';
 ?>
-
+<?php if(Yii::$app->user->isGuest) {
+	Yii::$app->response->redirect(['site/login']);
+}
+?>
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script type="text/javascript">
