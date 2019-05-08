@@ -14,6 +14,7 @@ use app\models\Supplier;
 use app\models\Employees;
 use app\models\StatusOrder;
 use app\models\Post;
+use app\models\Product;
 
 class SiteController extends Controller
 {
@@ -25,7 +26,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['login','logout','suppliers','','site','/','/site'],
+                'only' => ['login','logout','suppliers','','site','/','/site','addemp','editemp','products','employees','contact'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -98,6 +99,13 @@ class SiteController extends Controller
       return $this->redirect(['/site/employees']);
     }
 
+    public function actionProducts(){
+
+      $model = new Product;
+      $products = $model->all();
+      return $this->render('products',['products' => $products]);
+    }
+
     public function actionAddemp(){
 
       if(isset($_POST['addemp'])){
@@ -150,6 +158,15 @@ class SiteController extends Controller
 
     public function actionContact(){
 
+      if(isset($_POST['comment'])){
+        Yii::$app->mailer->compose()
+            ->setTo('Bandito14@yandex.ru')
+            ->setFrom(['Bandito14@yandex.ru' => $_POST['email']])
+            ->setSubject($_POST['title'])
+            ->setTextBody($_POST['desc'])
+            ->send();
+            return $this->redirect(['/site/contact']);
+      }
       return $this->render('contact');
     }
 
@@ -174,7 +191,7 @@ class SiteController extends Controller
           $passworduser = $_POST['pass'];
           $user = User::findOne(['login_emp' => $loginuser]);
           if($user!=null){
-            if($user->pass_emp == Yii::$app->getSecurity()->validatePassword($passworduser, $user->pass_emp)){
+            if($passworduser == Yii::$app->getSecurity()->validatePassword($passworduser, $user->pass_emp)){
               Yii::$app->user->login($user);
               echo "has";
             }

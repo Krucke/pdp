@@ -38,8 +38,8 @@ $config = [
                 'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.yandex.ru',
-                'username' => 'oc.mcdir@yandex.ru',
-                'password' => 'oc_2017',
+                'username' => 'Bandito14@yandex.ru',
+                'password' => '',
                 'port' => '465',
                 'encryption' => 'ssl',
                  ],

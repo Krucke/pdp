@@ -61,8 +61,7 @@ AppAsset::register($this);
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-shopping-cart"></i>Закупка товара <i class="arrow__right"></i></a>
             <ul class="submenu">
               <li class="submenu__item"><a href="/site/suppliers" class="submenu__link">Поставщики</a></li>
-              <li class="submenu__item"><a href="" class="submenu__link">Создание заказа</a></li>
-              <li class="submenu__item"><a href="" class="submenu__link">Документация</a></li>
+              <li class="submenu__item"><a href="/site/products" class="submenu__link">Товары поставщиков</a></li>
             </ul>
           </li>
           <li class="menu__item down"><a href="" class="menu__link"><i class="fas fa-truck-loading"></i>Принятие поставки <i class="arrow__right"></i></a>

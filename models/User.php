@@ -17,7 +17,6 @@ use yii\web\IdentityInterface;
  * @property string $login_emp
  * @property string $pass_emp
  * @property string $img_emp
-  * @property string email_emp
  * @property int $auth_key
  * @property int $post_id
  *
@@ -104,7 +103,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['lastname_emp', 'firstname_emp', 'otch_emp', 'date_employment', 'login_emp', 'pass_emp', 'img_emp', 'email_emp', 'post_id'], 'required'],
+            [['lastname_emp', 'firstname_emp', 'otch_emp', 'date_employment', 'login_emp', 'pass_emp', 'img_emp', 'post_id'], 'required'],
             [['date_employment'], 'safe'],
             [['img_emp'], 'string'],
             [['auth_key', 'post_id'], 'integer'],
@@ -113,7 +112,6 @@ class User extends ActiveRecord implements IdentityInterface
             [['login_emp'], 'string', 'max' => 40],
             [['pass_emp'], 'string', 'max' => 16],
             [['login_emp'], 'unique'],
-            [['email_emp'], 'string', 'max' =>255],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id_post']],
         ];
     }
@@ -132,7 +130,6 @@ class User extends ActiveRecord implements IdentityInterface
             'login_emp' => 'Login Emp',
             'pass_emp' => 'Pass Emp',
             'img_emp' => 'Img Emp',
-            'email_emp' => 'Email Emp',
             'auth_key' => 'Auth Key',
             'post_id' => 'Post ID',
         ];

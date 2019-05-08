@@ -46,8 +46,16 @@ $this->title = 'Вход в учетную запись';
         dataType: "html",
         success: function(data){
           if(data == "has"){
-            alert('Добро пожаловать '+login);
-            window.location.replace("/site/index");
+            swal({
+              title: "Вход в систему",
+              text: "Вы успешно зашли в систему под логином "+login,
+              icon: "success",
+              button: "Продолжить",
+            })
+            .then(function(){
+
+              window.location.replace("/site/suppliers");
+            });
           }
           else {
             $('.button__dark').prop('disabled',true);

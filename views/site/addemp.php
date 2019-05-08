@@ -32,10 +32,6 @@
         <input type="password" class="form-control" id="password" placeholder="Введите пароль сотрудника" name="password">
       </div>
       <div class="form-group">
-        <label for="datead">Дата приема на работу</label>
-        <input type="text" class="form-control" id="datead" placeholder="Password" name="datead">
-      </div>
-      <div class="form-group">
         <label for="post">Должность</label>
         <select class="form-control" id="post" name="post">
           <?php
